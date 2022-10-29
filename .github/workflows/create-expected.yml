@@ -7,7 +7,7 @@ on:
         description: "URL"
         required: true
         type: string
-        default: "https://matsuri-ui.netlify.app"
+        default: "https://govuk-react.github.io/govuk-react"
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}

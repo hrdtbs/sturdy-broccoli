@@ -7,7 +7,7 @@ on:
         description: "URL"
         required: true
         type: string
-        default: "https://matsuri-ui.netlify.app"
+        default: "https://govuk-react.github.io/govuk-react"
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -35,7 +35,7 @@ jobs:
           rm -rf .reg/expected/
           mv -f .reg/actual/ .reg/expected/
           mkdir .reg/actual/
-      - name: Create expected
+      - name: Create current
         run: yarn storycap ${{ github.event.inputs.url }} --viewport 600x400
         env:
           CI: true
