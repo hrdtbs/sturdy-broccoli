@@ -49,4 +49,4 @@ jobs:
           git add .
           git commit -m 'chore: update expected'
           git push
-       if: steps.diff.outcome == 'failure'
+        if: steps.diff.outcome == 'failure'
