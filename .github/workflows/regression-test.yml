@@ -1,0 +1,50 @@
+name: Reguression Test
+
+on:
+  workflow_dispatch:
+    inputs:
+      url:
+        description: "URL"
+        required: true
+        type: string
+        default: "https://matsuri-ui.netlify.app"
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: [16]
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js ${{ matrix.node }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node }}
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+        env:
+          CI: true
+      - name: Setup expected
+        run: |
+          yarn reg-suit run
+          rm -rf .reg/expected/
+          mv -f .reg/actual/ .reg/expected/
+          mkdir .reg/actual/
+      - name: Create expected
+        run: yarn storycap ${{ github.event.inputs.url }} --viewport 600x400
+        env:
+          CI: true
+      - name: Run reg-suit
+        run: yarn reg-suit run
+        env:
+          CI: true
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./.reg
