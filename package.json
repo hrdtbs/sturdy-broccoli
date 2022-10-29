@@ -9,6 +9,7 @@
     "reg-suit": "^0.12.1"
   },
   "devDependencies": {
+    "prettier": "^2.7.1",
     "reg-keygen-git-hash-plugin": "^0.12.1",
     "storycap": "^3.1.9"
   }

@@ -16,11 +16,9 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
-
     strategy:
       matrix:
         node: [16]
-
     steps:
       - uses: actions/checkout@v3
       - name: Use Node.js ${{ matrix.node }}
@@ -49,4 +47,4 @@ jobs:
           git add .
           git commit -m 'chore: update expected'
           git push
-       if: steps.diff.outcome == 'failure'
+        if: steps.diff.outcome == 'failure'
