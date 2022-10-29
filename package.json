@@ -1,0 +1,14 @@
+{
+  "name": "sturdy-broccoli",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:hrdtbs/sturdy-broccoli.git",
+  "author": "hrdtbs <harada.tsubasa.0422@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "reg-suit": "^0.12.1"
+  },
+  "devDependencies": {
+    "reg-keygen-git-hash-plugin": "^0.12.1"
+  }
+}
